@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste{% endblock %}
+
+{% block filariane %}
+    {{ parent() }}
+    <li class="breadcrumb-item active" aria-current="page">Liste</li>
+{% endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        <h2 class="text-center">Liste des super héros</h2>
+        <div class="text-center mb-2 bg-light">
+            <a class="btn btn-primary" href="{{ path('superHero_tri', {'param': 'nom'}) }}">Trier par nom</a>
+            <a class="btn btn-primary" href="{{ path('superHero_tri', {'param': 'puissance'}) }}">Trier
+                par niveau de puissance</a>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+            {% for hero in heros %}
+                <div class="col">
+                    <div class="card align-items-center text-center h-100 shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center w-75">
+                            <h3 class="text-center flex-grow-1 mb-0">{{ hero.nom }}</h3>
+                            {% if hero.favori %}
+                                <a href="" class="bi bi-heart-fill text-success fs-4 ms-3"></a>
+                            {% else %}
+                                <a href="" class="bi bi-heart  fs-4 ms-3"></a>
+                            {% endif %}
+                        </div>
+                        <div class="card-body d-flex flex-column align-items-center justify-content-between"
+                             style="height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center flex-grow-1 w-100">
+                                <a href="{{ path('superHero_detail', {id: hero.id}) }}">
+                                    <img class="img-fluid object-fit-contain" style="max-height: 250px;"
+                                         src="{{ asset(hero.imageUrl) }}" alt="???">
+                                </a>
+                            </div>
+                            {% include '_bare.html.twig' %}
+                        </div>
+                        <div class="mb-2">
+
+                            {% if hero.favori %}
+                                <a class="btn  btn-outline-danger d-flex align-items-center gap-2"
+                                   href="{{ path('superHero_favori', {id:hero.id}) }}">
+                                    Retirer des favoris
+                                </a>
+                            {% else %}
+                                <a class="btn btn-outline-success d-flex align-items-center gap-2"
+                                   href="{{ path('superHero_favori', {id:hero.id}) }}">
+                                    Ajouter aux favoris
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

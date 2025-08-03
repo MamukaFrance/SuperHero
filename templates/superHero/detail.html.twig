@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails
+{% endblock %}
+
+{% block filariane %}
+    {{ parent() }}
+    <li class="breadcrumb-item"><a href="{{ path('superHero_list') }}">Liste</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Details</li>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid d-flex justify-content-center mt-4  text-center">
+        <div class="w-50 bg-light">
+            <h3 class="card-title mb-2">{{ hero.nom }}</h3>
+            <div class="d-flex  flex-wrap gap-3 flex-md-row  justify-content-center align-items-center">
+                <div class="mb-2">
+                    <img class="img-fluid object-fit-contain" src="{{ asset( hero.imageUrl ) }}" alt="image" style="width: 250px; height: 400px;">
+                </div>
+                <div class="m-2">
+                    <div class="text-start">Nom : {{ hero.nom }}</div>
+                    <div class="text-start">Identité secrete : {{ hero.identiteSecrete }}</div>
+                    <div class="text-start">Pouvoirs : {{ hero.pouvoirs }}</div>
+                    <div class="text-start">Equipe : {{ hero.equipe }}</div>
+                    {% include '_bare.html.twig' %}
+                </div>
+            </div>
+        </div>
+</div>
+    {% endblock %}
+
+
+

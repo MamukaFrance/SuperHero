@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div style="text-align: center" >
+    <h1 class="home mb-4">« Choisis ton héros ! »</h1>
+    <a href="{{ path('superHero_list') }}"><img style="height: 80vh"  src="{{ asset(hero.imageUrl) }}" alt=""></a>
+    </div>
+
+
+{% endblock %}
